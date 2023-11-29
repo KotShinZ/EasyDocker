@@ -1,14 +1,19 @@
 {
-    "name": "python-mamba",
-    "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
-    "init": true,
+    "name": "EaseryDock",
+    "image": "mcr.microsoft.com/devcontainers/python",
+    "runArgs": [
+        "--privileged"
+    ],
+    "waitFor": "onCreateCommand",
+    "updateContentCommand": "python3 -m pip install -r requirements.txt",
+    //"postCreateCommand": "/workspaces/.devcontainer/setup.sh",
     "customizations": {
         "vscode": {
             "settings": {
                 "python.formatting.provider": "none",
                 "python.linting.pylintEnabled": false,
                 "python.linting.lintOnSave": true,
-                "python.defaultInterpreterPath": "/opt/conda/bin/python",
+                //"python.defaultInterpreterPath": "/opt/conda/bin/python",
                 "[python]": {
                     "editor.formatOnPaste": true,
                     "editor.defaultFormatter": "ms-python.black-formatter",
@@ -17,7 +22,7 @@
                         "source.fixAll": true
                     }
                 },
-                "ruff.args": [
+                "ruff.lint.args": [
                     "--select=E,W,F,B,I,N,A,UP,C4,PL,PD,NPY,C90,COM"
                 ]
             },
@@ -26,7 +31,8 @@
                 "ms-python.black-formatter",
                 "charliermarsh.ruff",
                 "KevinRose.vsc-python-indent",
-                "njpwerner.autodocstring"
+                "njpwerner.autodocstring",
+                "ms-vscode-remote.remote-containers"
             ]
         }
     },
@@ -36,11 +42,6 @@
             "version": "latest",
             "ppa": true
         },
-        // Mambaforge
-        "ghcr.io/rocker-org/devcontainer-features/miniforge:latest": {
-            "version": "latest",
-            "variant": "Mambaforge"
-        }
-    },
-    "postCreateCommand": "/bin/bash ${containerWorkspaceFolder}/.devcontainer/setup.sh"
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {}
+    }
 }
