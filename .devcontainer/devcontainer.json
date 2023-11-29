@@ -1,5 +1,5 @@
 {
-    "name": "EaseryDock",
+    "name": "EasyDocker",
     "image": "mcr.microsoft.com/devcontainers/python",
     "runArgs": [
         "--privileged"
